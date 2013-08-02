@@ -119,3 +119,11 @@ struct bt_ctf_field_decl *_bt_python_field_decl_one_from_list(
 {
 	return list[index];
 }
+struct definition_sequence *_bt_python_from_def_to_sequence(
+		struct bt_definition *field)
+{
+	if (field && bt_ctf_field_type(
+		bt_ctf_get_decl_from_def(field)) == CTF_TYPE_SEQUENCE)
+		return container_of(field, struct definition_sequence, p);
+	return NULL;
+}
